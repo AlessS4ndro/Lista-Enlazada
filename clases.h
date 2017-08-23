@@ -13,11 +13,14 @@ struct NodeSimple
 };
 
 template <typename U>
-struct NodeDouble:private NodeSimple<U>
+struct NodeDouble
 {
+  U value;
   NodeDouble *right;
+  NodeDouble *left;
+  int size;
 
-  NodeDouble(U v):NodeSimple<U>(v),right(NULL){}
+  NodeDouble(U v):left(NULL),right(NULL),size(0),value(v){}
   ~NodeDouble(){}
 };
 
@@ -29,12 +32,30 @@ class ListLink
   int size;
 public:
   ListLink():head(NULL),tail(NULL),size(0){}
-  ~ListLink(){}
-  bool add(int,T );
+  ~ListLink();
   void push_back(T );
   void push_front(T);
   T pop_back();
   T pop_front();
+  bool add(int,T );
+  T& find(T);
+
+  void print();
+};
+template <typename T>
+class ListLinkDouble
+{
+  NodeDouble<T> *head;
+  NodeDouble<T> *tail;
+  int size;
+public:
+  ListLinkDouble():head(NULL),tail(NULL),size(0){}
+  ~ListLinkDouble(){}
+  void push_back(T);
+  void push_front(T);
+  void pop_back();
+  void pop_front();
+  bool add(int,T);
   T& find(T);
 
   void print();

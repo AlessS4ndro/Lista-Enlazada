@@ -1,10 +1,10 @@
 #include "clases.h"
 #include "listlink.h"
-
+#include "listlinkdouble.h"
 
 int main(int argc,char *argv[])
 {
-
+  cout<<"PROBANDO LISTA ENLAZADA............\n";
   ListLink<int> l;
 
   for(int i=0;i<10;i++)
@@ -22,6 +22,19 @@ int main(int argc,char *argv[])
   cout<<"modificamos valor 5"<<endl;
   l.find(5)=11111;
   l.print();
+  l.add(3,-777);
+  l.print();
+  l.add(0,-333);
+  l.print();
+
+
+
+  cout<<"PROBANDO LISTA DOBLEMENTE ENLAZADA...............\n";
+  ListLinkDouble<int> ld;
+
+  for(int i=0;i<10;i++)
+    ld.push_back(i);
+  ld.print();
 
 	/////////	ESTAMOS MODIFICANDO EL MAIN		//////7
   return 0;

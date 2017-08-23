@@ -2,7 +2,7 @@ template <typename U>
 void ListLink<U>::print()
 {
     NodeSimple<U> *n=head;
-    while(n!=NULL){
+    while(n){
       cout<<n->value<<"--";
       n=n->left;
     }
@@ -14,7 +14,7 @@ void ListLink<T>::push_back(T val)
 {
   NodeSimple<T> *n=new NodeSimple<T>(val);
 
-  if(head!=NULL){
+  if(head){
     tail->left=n;
     tail=tail->left;
   }
@@ -23,7 +23,6 @@ void ListLink<T>::push_back(T val)
     tail=n;
   }
   size++;
-
 }
 
 template <typename T>
@@ -42,7 +41,7 @@ void ListLink<T>::push_front(T val)
 template<typename T>
 T ListLink<T>::pop_front()
 {
-  if(head!=NULL){
+  if(head){
     NodeSimple<T> *n=head;
     T retornable;
     head=head->left;
@@ -55,7 +54,7 @@ T ListLink<T>::pop_front()
 template<typename T>
 T ListLink<T>::pop_back()
 {
-  if(head!=NULL){
+  if(head){
     NodeSimple<T> *n=head;
     T retornable;
     while(n->left!=tail)
@@ -72,29 +71,43 @@ template<typename T>
 T& ListLink<T>::find(T key)
 {
   NodeSimple<T> *n=head;
-  while(n!=NULL && n->value!=key )
+  while(n && n->value!=key )
     n=n->left;
-  if(n!=NULL)
+  if(n)
     return n->value;
 }
-/*
+
 template<typename T>
 bool ListLink<T>::add(int indice,T val)
 {
   if(indice<=size){
     NodeSimple<T> *nuevo=new NodeSimple<T>(val);
     NodeSimple<T> *n=head;
-    if(indice==0){
-      head=nuevo;
-      head->left=n;
-    }
-
+    if(indice==0){        /////   ----------------------------------
+      nuevo->left=head;   ///////// esta es una exepcion del algoritmo-
+      head=nuevo;         ////////  si el indice es cero solo movemos head
+      return true;        ////////// ----------------------
+    }                     /////////   ---------------------
     for(int i=0;i<indice-1;i++){
         n=n->left;
     }
-
-
+    nuevo->left=n->left;
+    n->left=nuevo;
+    return true;
   }
   return false;
 }
-*/
+
+template<typename T>
+ListLink<T>::~ListLink()
+{
+  cout<<"--------Trabajo terminado-----------"<<endl;
+  NodeSimple<T> *n;
+  do{
+    n=head;
+    head=head->left;  ////////  apuntas ,saltas ,borras
+    delete n;
+    cout<<">eliminando nodo........."<<endl;
+  }while(head);
+  head=tail=NULL;
+}
