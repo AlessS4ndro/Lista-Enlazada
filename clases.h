@@ -30,7 +30,7 @@ class ListLink
 public:
   ListLink():head(NULL),tail(NULL),size(0){}
   ~ListLink(){}
-  void add(int );
+  bool add(int,T );
   void push_back(T );
   void push_front(T);
   T pop_back();
