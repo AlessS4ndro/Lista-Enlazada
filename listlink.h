@@ -3,10 +3,10 @@ void ListLink<U>::print()
 {
     NodeSimple<U> *n=head;
     while(n){
-      cout<<n->value<<"--";
+      cout<<"->"<<n->value->data;
       n=n->left;
     }
-    cout<<endl;
+    cout<<"->NULL"<<endl;
 }
 
 template<typename T>
@@ -110,4 +110,22 @@ ListLink<T>::~ListLink()
     cout<<">eliminando nodo........."<<endl;
   }while(head);
   head=tail=NULL;
+}
+template<typename T>
+void delete_ ListLink::delete_(NodeSimple<T> *p)
+{
+	NodeSimple<T> *walk,*borrador
+	walk=head;
+	if(!head) return;
+	if(walk==p){
+		head=head->left;
+		delete walk;
+	}
+	while(walk->lef){
+		if(walk->left==p)
+			borrador=walk->left;
+			walk->left=walk->left->left;
+			delete borrador;
+	}
+	
 }

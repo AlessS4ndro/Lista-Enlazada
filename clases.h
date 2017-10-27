@@ -39,8 +39,9 @@ public:
   T pop_front();
   bool add(int,T );
   T& find(T);
-
+	NodeSimple<T> * get_root(){return head;}
   void print();
+  void delete_();
 };
 template <typename T>
 class ListLinkDouble
